@@ -23,4 +23,4 @@ jobs:
         ssh-keyscan -t rsa www.hufeifei.cn >> ~/.ssh/known_hosts
         ssh -i ~/.ssh/id_rsa root@www.hufeifei.cn 'docker stop plantuml-server; \
         docker rm plantuml-server; \
-        docker run -d -p 18080:8080 -e BASE_URL=plantuml --name plantuml-server plantuml/plantuml-server:jetty'
+        docker run -d -p 18080:8080 -e BASE_URL=plantuml --name plantuml-server --net global plantuml/plantuml-server:jetty'
