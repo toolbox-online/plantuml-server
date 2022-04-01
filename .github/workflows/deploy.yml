@@ -14,13 +14,13 @@ jobs:
       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
       with:
         ssh-private-key: ${{ secrets.ID_RSA }}
-        ssh-host: report.hufeifei.cn
+        ssh-host: www.hufeifei.cn
     - name: Deploy Server
       run: |
         echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-add ~/.ssh/id_rsa
-        ssh-keyscan -t rsa report.hufeifei.cn >> ~/.ssh/known_hosts
-        ssh -i ~/.ssh/id_rsa root@report.hufeifei.cn 'docker stop plantuml-server; \
+        ssh-keyscan -t rsa www.hufeifei.cn >> ~/.ssh/known_hosts
+        ssh -i ~/.ssh/id_rsa root@www.hufeifei.cn 'docker stop plantuml-server; \
         docker rm plantuml-server; \
         docker run -d -p 18080:8080 -e BASE_URL=plantuml --name plantuml-server plantuml/plantuml-server:jetty'
